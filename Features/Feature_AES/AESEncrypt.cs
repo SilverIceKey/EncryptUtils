@@ -24,13 +24,7 @@ namespace EncryptUtils.Features.Feature_AES
         }
         public string Decrypt(string content, string key)
         {
-            throw new NotImplementedException();
-        }
-
-        public string Encrypt(string content, string key)
-        {
             aes.Key = EncryptHelper.GetKey(Encoding.UTF8.GetBytes(key));
-            aes.IV = CommonData.zeroIV;
             switch (EncryptMode)
             {
                 case "ECB":
@@ -38,6 +32,7 @@ namespace EncryptUtils.Features.Feature_AES
                     break;
                 case "CBC":
                     aes.Mode = CipherMode.CBC;
+                    aes.IV = CommonData.zeroIV;
                     break;
                 default:
                     aes.Mode = CipherMode.ECB;
@@ -48,42 +43,67 @@ namespace EncryptUtils.Features.Feature_AES
                 case "NoPadding":
                     aes.Padding = PaddingMode.None;
                     break;
-                case "PKCS5Padding":
+                case "PKCS7Padding":
                     aes.Padding = PaddingMode.PKCS7;
                     break;
             }
-            switch (key.Length)
+            
+            ICryptoTransform cryptoTransform = aes.CreateDecryptor(aes.Key, aes.IV);
+            //byte[] _contentBytes = Encoding.UTF8.GetBytes(content);
+            byte[] _contentBytes = Convert.FromBase64String(content);
+            string _result = Encoding.UTF8.GetString(cryptoTransform.TransformFinalBlock(_contentBytes, 0, _contentBytes.Length));
+            return _result;
+        }
+
+        public string Encrypt(string content, string key)
+        {
+            aes.Key = EncryptHelper.GetKey(Encoding.UTF8.GetBytes(key));
+            switch (EncryptMode)
             {
-                case 16:
-                    aes.KeySize = 128;
+                case "ECB":
+                    aes.Mode = CipherMode.ECB;
                     break;
-                case 24:
-                    aes.KeySize = 192;
+                case "CBC":
+                    aes.Mode = CipherMode.CBC;
+                    aes.IV = CommonData.zeroIV;
                     break;
-                case 32:
-                    aes.KeySize = 256;
+                default:
+                    aes.Mode = CipherMode.ECB;
                     break;
-
             }
-            aes.BlockSize = 128;
-            ICryptoTransform cryptoTransform = aes.CreateEncryptor();
+            switch (FillMode)
+            {
+                case "NoPadding":
+                    aes.Padding = PaddingMode.None;
+                    break;
+                case "PKCS7Padding":
+                    aes.Padding = PaddingMode.PKCS7;
+                    break;
+            }
+            ICryptoTransform cryptoTransform = aes.CreateEncryptor(aes.Key, aes.IV);
             byte[] _contentBytes = Encoding.UTF8.GetBytes(content);
-            //if (aes.Padding != PaddingMode.None)
-            //{
-
-            //}
+            _contentBytes = EncryptHelper.GetContent(_contentBytes, "NoPadding".Equals(FillMode));
             string _result = Convert.ToBase64String(cryptoTransform.TransformFinalBlock(_contentBytes, 0, _contentBytes.Length));
             return _result;
         }
 
         public string[] GetEncryptFillMode()
         {
-            return new string[] { "NoPadding", "PKCS5Padding" };
+            return new string[] { "NoPadding", "PKCS7Padding" };
         }
 
         public string[] GetEncryptMode()
         {
             return new string[] { "ECB", "CBC" };
+        }
+
+        public string IsContentCorrent(string content)
+        {
+            //if ("NoPadding".Equals(FillMode) && Encoding.UTF8.GetBytes(content).Length % 16 != 0)
+            //{
+            //    return "加密内容长度不正确";
+            //}
+            return "";
         }
 
         public string IsKeyCorrect(string key)

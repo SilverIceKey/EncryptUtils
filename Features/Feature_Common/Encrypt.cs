@@ -31,6 +31,13 @@ namespace EncryptUtils.Features.Feature_Common
         string IsKeyCorrect(string key);
 
         /// <summary>
+        /// 加密内容长度是否正确
+        /// </summary>
+        /// <param name="content"></param>
+        /// <returns></returns>
+        string IsContentCorrent(string content);
+
+        /// <summary>
         /// 获取加密模式
         /// </summary>
         /// <returns></returns>

@@ -54,5 +54,10 @@ namespace EncryptUtils.Features.Feature_RSA
                 return "密钥长度不对";
             }
         }
+
+        public string IsContentCorrent(string content)
+        {
+            return "";
+        }
     }
 }

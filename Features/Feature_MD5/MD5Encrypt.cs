@@ -47,5 +47,10 @@ namespace EncryptUtils.Features.Feature_MD5
         {
             return "";
         }
+
+        public string IsContentCorrent(string content)
+        {
+            return "";
+        }
     }
 }

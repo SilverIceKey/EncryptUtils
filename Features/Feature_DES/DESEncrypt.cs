@@ -26,7 +26,7 @@ namespace EncryptUtils.Features.Feature_DES
 
         public string[] GetEncryptFillMode()
         {
-            return new string[] { "NoPadding", "PKCS5Padding" };
+            return new string[] { "NoPadding", "PKCS7Padding" };
         }
 
         public string[] GetEncryptMode()
@@ -52,6 +52,14 @@ namespace EncryptUtils.Features.Feature_DES
             {
                 return "密钥长度不对";
             }
+        }
+        public string IsContentCorrent(string content)
+        {
+            if ("NoPadding".Equals(FillMode) && Encoding.UTF8.GetBytes(content).Length % 16 != 0)
+            {
+                return "加密内容长度不正确";
+            }
+            return "";
         }
     }
 }

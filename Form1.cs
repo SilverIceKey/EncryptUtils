@@ -53,6 +53,12 @@ namespace EncryptUtils
                 MessageBox.Show(_isKeyCorrect);
                 return;
             }
+            string _isContentCorrent = encrypt.IsContentCorrent(contentWaitToDeal.Text);
+            if (!string.IsNullOrEmpty(_isContentCorrent))
+            {
+                MessageBox.Show(_isContentCorrent);
+                return;
+            }
             string _resultContent = encrypt.Encrypt(contentWaitToDeal.Text, encryptKeyTB.Text);
             contentResult.Text = _resultContent;
         }

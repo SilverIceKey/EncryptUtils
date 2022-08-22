@@ -47,5 +47,10 @@ namespace EncryptUtils.Features
         {
             return "";
         }
+
+        public string IsContentCorrent(string content)
+        {
+            return "";
+        }
     }
 }
