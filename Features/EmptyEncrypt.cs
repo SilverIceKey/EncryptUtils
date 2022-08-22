@@ -14,12 +14,12 @@ namespace EncryptUtils.Features
     {
         private string FillMode = "";
         private string EncryptMode = "";
-        public string Decrypt(string content, string key)
+        public string Decrypt(string content, string key, string iv = "")
         {
             return content;
         }
 
-        public string Encrypt(string content, string key)
+        public string Encrypt(string content, string key, string iv = "")
         {
             return content;
         }
@@ -51,6 +51,11 @@ namespace EncryptUtils.Features
         public string IsContentCorrent(string content)
         {
             return "";
+        }
+
+        public bool IsIVEnable()
+        {
+            return false;
         }
     }
 }

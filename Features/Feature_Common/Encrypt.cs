@@ -50,12 +50,18 @@ namespace EncryptUtils.Features.Feature_Common
         string[] GetEncryptFillMode();
 
         /// <summary>
+        /// 是否开启偏移量
+        /// </summary>
+        /// <returns></returns>
+        bool IsIVEnable();
+
+        /// <summary>
         /// 加密
         /// </summary>
         /// <param name="content">待处理内容</param>
         /// <param name="key">密钥</param>
         /// <returns></returns>
-        string Encrypt(string content, string key);
+        string Encrypt(string content, string key, string iv = "");
 
         /// <summary>
         /// 解密
@@ -63,6 +69,6 @@ namespace EncryptUtils.Features.Feature_Common
         /// <param name="content">待处理内容</param>
         /// <param name="key">密钥</param>
         /// <returns></returns>
-        string Decrypt(string content, string key);
+        string Decrypt(string content, string key, string iv = "");
     }
 }

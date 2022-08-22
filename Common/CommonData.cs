@@ -11,8 +11,6 @@ namespace EncryptUtils.Common
     /// </summary>
     internal class CommonData
     {
-        public static string[] EncryptFun = { "MD5", "AES", "DES", "RSA" };
-
-        public static byte[] zeroIV = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+        public static string[] EncryptFun = { "MD5", "AES", "DES","3DES", "RSA" };
     }
 }

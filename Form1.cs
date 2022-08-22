@@ -15,6 +15,7 @@ namespace EncryptUtils
             encrypt = EncryptHelper.GetEncryptImpl(encryptFunCB.SelectedItem.ToString()!);
             encryptModeCB.SelectedValueChanged += EncryptModeCB_SelectedValueChanged;
             encryptFillModeCB.SelectedValueChanged += EncryptFillModeCB_SelectedValueChanged;
+            encryptIVTB.BackColor = Color.FromName("Control");
         }
 
         private void EncryptFillModeCB_SelectedValueChanged(object? sender, EventArgs e)
@@ -25,6 +26,17 @@ namespace EncryptUtils
         private void EncryptModeCB_SelectedValueChanged(object? sender, EventArgs e)
         {
             encrypt.SetEncryptMode(encryptModeCB.SelectedItem.ToString()!);
+            if (encrypt.IsIVEnable())
+            {
+                encryptIVTB.ReadOnly = false;
+                encryptIVTB.BackColor = Color.FromName("Window");
+            }
+            else
+            {
+                encryptIVTB.ReadOnly = true;
+                encryptIVTB.Text = "";
+                encryptIVTB.BackColor = Color.FromName("Control");
+            }
         }
 
         private void EncryptFunCB_SelectedValueChanged(object? sender, EventArgs e)
@@ -59,7 +71,12 @@ namespace EncryptUtils
                 MessageBox.Show(_isContentCorrent);
                 return;
             }
-            string _resultContent = encrypt.Encrypt(contentWaitToDeal.Text, encryptKeyTB.Text);
+            if (encrypt.IsIVEnable() && encryptIVTB.Text.Length % 16 != 0)
+            {
+                MessageBox.Show("偏移量长度需为16倍数");
+                return;
+            }
+            string _resultContent = encrypt.Encrypt(contentWaitToDeal.Text, encryptKeyTB.Text, encryptIVTB.Text);
             contentResult.Text = _resultContent;
         }
 
@@ -87,7 +104,12 @@ namespace EncryptUtils
                 MessageBox.Show(_isKeyCorrect);
                 return;
             }
-            contentResult.Text = encrypt.Decrypt(contentWaitToDeal.Text, encryptKeyTB.Text);
+            if (encrypt.IsIVEnable() && encryptIVTB.Text.Length % 16 != 0)
+            {
+                MessageBox.Show("偏移量长度需为16倍数");
+                return;
+            }
+            contentResult.Text = encrypt.Decrypt(contentWaitToDeal.Text, encryptKeyTB.Text, encryptIVTB.Text);
         }
     }
 }

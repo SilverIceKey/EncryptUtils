@@ -14,12 +14,12 @@ namespace EncryptUtils.Features.Feature_RSA
     {
         private string FillMode = "";
         private string EncryptMode = "";
-        public string Decrypt(string content, string key)
+        public string Decrypt(string content, string key, string iv = "")
         {
             throw new NotImplementedException();
         }
 
-        public string Encrypt(string content, string key)
+        public string Encrypt(string content, string key, string iv = "")
         {
             throw new NotImplementedException();
         }
@@ -58,6 +58,10 @@ namespace EncryptUtils.Features.Feature_RSA
         public string IsContentCorrent(string content)
         {
             return "";
+        }
+        bool Encrypt.IsIVEnable()
+        {
+            return false;
         }
     }
 }

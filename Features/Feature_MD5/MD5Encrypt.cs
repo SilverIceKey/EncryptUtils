@@ -15,12 +15,12 @@ namespace EncryptUtils.Features.Feature_MD5
     {
         private string FillMode = "";
         private string EncryptMode = "";
-        public string Decrypt(string content, string key)
+        public string Decrypt(string content, string key, string iv = "")
         {
             throw new NotImplementedException();
         }
 
-        public string Encrypt(string content, string key)
+        public string Encrypt(string content, string key, string iv = "")
         {
             return BitConverter.ToString(MD5.Create().ComputeHash(Encoding.Default.GetBytes(content))).Replace("-","");
         }
@@ -51,6 +51,10 @@ namespace EncryptUtils.Features.Feature_MD5
         public string IsContentCorrent(string content)
         {
             return "";
+        }
+        bool Encrypt.IsIVEnable()
+        {
+            return false;
         }
     }
 }

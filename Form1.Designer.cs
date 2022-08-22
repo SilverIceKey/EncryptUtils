@@ -42,6 +42,8 @@
             this.contentResult = new System.Windows.Forms.TextBox();
             this.encryptBtn = new System.Windows.Forms.Button();
             this.decryptBtn = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.encryptIVTB = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // encryptFunCB
@@ -109,24 +111,24 @@
             // 
             // encryptKeyTB
             // 
-            this.encryptKeyTB.Location = new System.Drawing.Point(72, 42);
+            this.encryptKeyTB.Location = new System.Drawing.Point(83, 42);
             this.encryptKeyTB.Name = "encryptKeyTB";
-            this.encryptKeyTB.Size = new System.Drawing.Size(398, 27);
+            this.encryptKeyTB.Size = new System.Drawing.Size(387, 27);
             this.encryptKeyTB.TabIndex = 3;
             // 
             // contentWaitToDeal
             // 
-            this.contentWaitToDeal.Location = new System.Drawing.Point(12, 97);
+            this.contentWaitToDeal.Location = new System.Drawing.Point(12, 133);
             this.contentWaitToDeal.MaxLength = 32767000;
             this.contentWaitToDeal.Multiline = true;
             this.contentWaitToDeal.Name = "contentWaitToDeal";
-            this.contentWaitToDeal.Size = new System.Drawing.Size(1036, 248);
+            this.contentWaitToDeal.Size = new System.Drawing.Size(1036, 256);
             this.contentWaitToDeal.TabIndex = 4;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(14, 75);
+            this.label5.Location = new System.Drawing.Point(12, 111);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(99, 19);
             this.label5.TabIndex = 5;
@@ -135,7 +137,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(14, 348);
+            this.label6.Location = new System.Drawing.Point(14, 392);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(54, 19);
             this.label6.TabIndex = 5;
@@ -144,12 +146,12 @@
             // contentResult
             // 
             this.contentResult.BackColor = System.Drawing.SystemColors.Window;
-            this.contentResult.Location = new System.Drawing.Point(14, 370);
+            this.contentResult.Location = new System.Drawing.Point(14, 414);
             this.contentResult.MaxLength = 32767000;
             this.contentResult.Multiline = true;
             this.contentResult.Name = "contentResult";
             this.contentResult.ReadOnly = true;
-            this.contentResult.Size = new System.Drawing.Size(1034, 271);
+            this.contentResult.Size = new System.Drawing.Size(1034, 227);
             this.contentResult.TabIndex = 4;
             // 
             // encryptBtn
@@ -172,11 +174,31 @@
             this.decryptBtn.UseVisualStyleBackColor = true;
             this.decryptBtn.Click += new System.EventHandler(this.decryptBtn_Click);
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(14, 82);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(69, 19);
+            this.label7.TabIndex = 8;
+            this.label7.Text = "偏移量：";
+            // 
+            // encryptIVTB
+            // 
+            this.encryptIVTB.Location = new System.Drawing.Point(83, 79);
+            this.encryptIVTB.Name = "encryptIVTB";
+            this.encryptIVTB.ReadOnly = true;
+            this.encryptIVTB.Size = new System.Drawing.Size(387, 27);
+            this.encryptIVTB.TabIndex = 9;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1060, 653);
+            this.Controls.Add(this.encryptIVTB);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.decryptBtn);
             this.Controls.Add(this.encryptBtn);
             this.Controls.Add(this.label6);
@@ -214,5 +236,7 @@
         private TextBox contentResult;
         private Button encryptBtn;
         private Button decryptBtn;
+        private Label label7;
+        private TextBox encryptIVTB;
     }
 }
