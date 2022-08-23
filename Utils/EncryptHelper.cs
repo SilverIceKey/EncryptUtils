@@ -3,7 +3,7 @@ using EncryptUtils.Features.Feature_AES;
 using EncryptUtils.Features.Feature_Common;
 using EncryptUtils.Features.Feature_DES;
 using EncryptUtils.Features.Feature_MD5;
-using EncryptUtils.Features.Feature_RSA;
+using EncryptUtils.Features.Feature_SM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,12 +34,13 @@ namespace EncryptUtils.Utils
                     return new DESEncrypt();
                 case "3DES":
                     return new TripleDESEncrypt();
-                case "RSA":
-                    return new RSAEncrypt();
+                case "SM":
+                    return new SMEncrypt();
                 default:
                     return new EmptyEncrypt();
             }
         }
+
         /// <summary>
         /// 密钥补齐
         /// </summary>
@@ -56,67 +57,6 @@ namespace EncryptUtils.Utils
                 keyBytes = temp;
             }
             return keyBytes;
-        }
-
-        public static byte[] GetContent(byte[] contentBytes,bool paddingZero = true)
-        {
-            if (contentBytes.Length % 8 != 0)
-            {
-                int groups = ((contentBytes.Length / 8) + 2) * 8;
-                byte[] temp = new byte[groups];
-                Array.Copy(contentBytes, 0, temp, 0, contentBytes.Length);
-                for (int i = contentBytes.Length; i < temp.Length; i++)
-                {
-                    if (paddingZero)
-                    {
-                        temp[i] = 0;
-                    }
-                    else
-                    {
-                        if ((contentBytes.Length % 8) != 0)
-                        {
-                            temp[i] = (byte)(temp.Length - contentBytes.Length % 8);
-                        }
-                        else
-                        {
-                            temp[i] = 0;
-                        }
-                    }
-                }
-                contentBytes = temp;
-            }
-            return contentBytes;
-        }
-
-
-        public static byte[] GetTripleDESContent(byte[] contentBytes, bool paddingZero = true)
-        {
-            if (contentBytes.Length % 8 != 0)
-            {
-                int groups = ((contentBytes.Length / 8) + 2) * 8;
-                byte[] temp = new byte[groups];
-                Array.Copy(contentBytes, 0, temp, 0, contentBytes.Length);
-                for (int i = contentBytes.Length; i < temp.Length; i++)
-                {
-                    if (paddingZero)
-                    {
-                        temp[i] = 0;
-                    }
-                    else
-                    {
-                        if ((contentBytes.Length % 8) != 0)
-                        {
-                            temp[i] = (byte)(temp.Length - contentBytes.Length % 8);
-                        }
-                        else
-                        {
-                            temp[i] = 0;
-                        }
-                    }
-                }
-                contentBytes = temp;
-            }
-            return contentBytes;
         }
     }
 }
