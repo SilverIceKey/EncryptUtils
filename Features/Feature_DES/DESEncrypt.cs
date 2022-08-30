@@ -112,6 +112,7 @@ namespace EncryptUtils.Features.Feature_DES
 
         public void SetEncryptMode(string mode)
         {
+            IsIVEnable = "CBC".Equals(mode);
             EncryptMode = mode;
         }
         public string IsKeyCorrect(string key)

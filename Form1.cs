@@ -71,11 +71,11 @@ namespace EncryptUtils
                 MessageBox.Show(_isContentCorrent);
                 return;
             }
-            if (encrypt.IsIVEnable() && encryptIVTB.Text.Length % 16 != 0)
-            {
-                MessageBox.Show("偏移量长度需为16倍数");
-                return;
-            }
+            //if (encrypt.IsIVEnable() && encryptIVTB.Text.Length % 16 != 0)
+            //{
+            //    MessageBox.Show("偏移量长度需为16倍数");
+            //    return;
+            //}
             string _resultContent = encrypt.Encrypt(contentWaitToDeal.Text, encryptKeyTB.Text, encryptIVTB.Text);
             contentResult.Text = _resultContent;
         }
@@ -104,11 +104,11 @@ namespace EncryptUtils
                 MessageBox.Show(_isKeyCorrect);
                 return;
             }
-            if (encrypt.IsIVEnable() && encryptIVTB.Text.Length % 16 != 0)
-            {
-                MessageBox.Show("偏移量长度需为16倍数");
-                return;
-            }
+            //if (encrypt.IsIVEnable() && encryptIVTB.Text.Length % 16 != 0)
+            //{ 
+            //    MessageBox.Show("偏移量长度需为16倍数");
+            //    return;
+            //}
             contentResult.Text = encrypt.Decrypt(contentWaitToDeal.Text, encryptKeyTB.Text, encryptIVTB.Text);
         }
     }

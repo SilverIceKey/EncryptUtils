@@ -122,6 +122,7 @@
             this.contentWaitToDeal.MaxLength = 32767000;
             this.contentWaitToDeal.Multiline = true;
             this.contentWaitToDeal.Name = "contentWaitToDeal";
+            this.contentWaitToDeal.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.contentWaitToDeal.Size = new System.Drawing.Size(1036, 256);
             this.contentWaitToDeal.TabIndex = 4;
             // 
@@ -151,6 +152,7 @@
             this.contentResult.Multiline = true;
             this.contentResult.Name = "contentResult";
             this.contentResult.ReadOnly = true;
+            this.contentResult.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.contentResult.Size = new System.Drawing.Size(1034, 227);
             this.contentResult.TabIndex = 4;
             // 
