@@ -120,7 +120,7 @@ namespace EncryptUtils
             //    MessageBox.Show("偏移量长度需为16倍数");
             //    return;
             //}
-            contentResult.Text = encrypt.Decrypt(contentWaitToDeal.Text, encryptKeyTB.Text, encryptIVTB.Text);
+            contentResult.Text = encrypt.Decrypt(contentWaitToDeal.Text.Replace("\n", ""), encryptKeyTB.Text, encryptIVTB.Text); ; ;
         }
     }
 }
