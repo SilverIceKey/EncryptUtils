@@ -44,6 +44,17 @@ namespace EncryptUtils
             encrypt = EncryptHelper.GetEncryptImpl(encryptFunCB.SelectedItem.ToString()!);
             encryptModeCB.DataSource = encrypt.GetEncryptMode();
             encryptFillModeCB.DataSource = encrypt.GetEncryptFillMode();
+            if (encrypt.IsIVEnable())
+            {
+                encryptIVTB.ReadOnly = false;
+                encryptIVTB.BackColor = Color.FromName("Window");
+            }
+            else
+            {
+                encryptIVTB.ReadOnly = true;
+                encryptIVTB.Text = "";
+                encryptIVTB.BackColor = Color.FromName("Control");
+            }
         }
 
         private void encryptBtn_Click(object sender, EventArgs e)

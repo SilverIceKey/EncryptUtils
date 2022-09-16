@@ -25,7 +25,7 @@ namespace EncryptUtils.Features.Feature_DES
         }
         public string Decrypt(string content, string key, string iv = "")
         {
-            tripleDES.Key = Encoding.UTF8.GetBytes(key).Take(24).ToArray();
+            tripleDES.Key = EncryptHelper.GetKey(Encoding.UTF8.GetBytes(key));
             switch (EncryptMode)
             {
                 case "ECB":
